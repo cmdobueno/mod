@@ -94,7 +94,7 @@ class ServiceProvider extends Provider
     protected function registerCoreCommands()
     {
         $path = __DIR__ . DIRECTORY_SEPARATOR . 'Commands';
-        $namespace = 'Cmdobueno\\';
+        $namespace = 'Cmdobueno\\Mod\\';
         $remove = __DIR__ . DIRECTORY_SEPARATOR;
         foreach (scandir($path) as $name) {
             $directory_path = $path . DIRECTORY_SEPARATOR . $name;
