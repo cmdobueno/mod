@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Cmdobueno\\": "src"
+            "Cmdobueno\\Mod\\": "src"
         }
     },
     "extra": {
