@@ -40,7 +40,7 @@ class ServiceProvider extends Provider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/.php', '');
+        $this->mergeConfigFrom(__DIR__ . '/../config/mod.php', '');
         $this->registerCommands();
         
         //Register Module Register Providers
