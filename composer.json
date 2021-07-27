@@ -1,0 +1,34 @@
+{
+    "name": "cmdobueno/mod",
+    "description": "Modularized Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Good"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^8",
+        "livewire/livewire": "^v2.5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cmdobueno\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cmdobueno\\Mod\\ServiceProvider",
+                "Cmdobueno\\Mod\\RouteProvider",
+                "Cmdobueno\\Mod\\ViewServiceProvider",
+                "Cmdobueno\\Mod\\MigrationServiceProvider",
+                "Cmdobueno\\Mod\\LivewireServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

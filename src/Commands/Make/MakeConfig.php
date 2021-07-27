@@ -1,0 +1,81 @@
+<?php
+
+namespace Cmdobueno\Mod\Commands\Make;
+
+use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
+
+class MakeConfig extends Command
+{
+    use ModCommands;
+    
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'mod:config {name} {--module=}';
+    
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'This will create a configuration in a specific package.';
+    /**
+     * @var Filesystem
+     */
+    private $pathway = 'config';
+    private $files;
+    protected $name;
+    private $vendor;
+    private $modules_path;
+    private $module_path;
+    private $module;
+    private $file_path;
+    private $extra_path = '';
+    private $extra_namespace = '';
+    
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct(Filesystem $files)
+    {
+        $this->files = $files;
+        $this->vendor = 'vendor' . DIRECTORY_SEPARATOR . 'cmdobueno' . DIRECTORY_SEPARATOR . 'mod' . DIRECTORY_SEPARATOR;
+        $this->modules_path = app_path('Modules');
+        
+        parent::__construct();
+    }
+    
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        //Get Our Arguments
+        $this->getNameArg();
+        $this->name = strtolower($this->name);
+        
+        if (!$this->getModule()) {
+            return 0;
+        }
+        //Does it Exist??
+        if ($this->alreadyExists($this->file_path)) {
+            return 0;
+        }
+        
+        //Get our stub
+        $stub = $this->files->get(base_path($this->vendor . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'config.stub'));
+        
+        //Replace and store stub
+        $this->place($this->file_path, $stub);
+        
+        $this->info('Cast has been generated successfully.');
+        return 0;
+    }
+}

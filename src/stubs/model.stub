@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Cmdobueno\Mod\Traits\Models\DynamicTrait;
+
+class {{ class }} extends Model
+{
+    use HasFactory, DynamicTrait;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [];
+}

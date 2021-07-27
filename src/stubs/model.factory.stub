@@ -1,0 +1,28 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Cmdobueno\Mod\Traits\Models\DynamicTrait;
+use {{ factoryNamespace }};
+
+class {{ class }} extends Model
+{
+    use HasFactory, DynamicTrait;
+
+    /**
+     * @return {{ factory }}
+     */
+    protected static function newFactory(): {{ factory }}
+    {
+        return new {{ factory }}();
+    }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [];
+}
