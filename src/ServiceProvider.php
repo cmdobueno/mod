@@ -125,13 +125,17 @@ class ServiceProvider extends Provider
             } else {
                 $file = str_replace([$remove, '.php'], '', $path);
                 $file = str_ireplace('/', '\\', $file);
-                $namespaced = $namespace . '\\' . $file;
+                $namespaced = $namespace  . $file;
                 if (!class_exists($namespaced) && !trait_exists($namespaced)) {
                     dd($namespaced, $path);
-                } else {
+                }else {
                     if (is_subclass_of($namespaced, Command::class) && !(new ReflectionClass($namespaced))->isAbstract()) {
                         Artisan::starting(function ($artisan) use ($namespaced) {
-                            $artisan->resolve($namespaced);
+                            try{
+                                $artisan->resolve($namespaced);
+                            }catch(\Exception $e){
+                                dd($e->getMessage());
+                            }
                         });
                     }
                 }
