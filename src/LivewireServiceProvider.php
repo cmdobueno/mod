@@ -68,7 +68,7 @@ class LivewireServiceProvider extends ServiceProvider
                     $componentName = \Str::kebab($module) . '::' . $componentName;
                     $class = get_class(new $classString);
                     
-                    Livewire::component($componentName, $class);
+                    \Livewire::component($componentName, $class);
                 });
             }
         }
