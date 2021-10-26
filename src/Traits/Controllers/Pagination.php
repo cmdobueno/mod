@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Pagination
 {
-    protected $model = Model::class;
-    protected $sort = [];
-    protected $filters = [];
     protected $per_page = 25;
     protected $page_options = [
         25,
