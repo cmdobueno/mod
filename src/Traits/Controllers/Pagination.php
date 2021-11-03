@@ -2,8 +2,6 @@
 
 namespace Cmdobueno\Mod\Traits\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
-
 trait Pagination
 {
     protected $per_page = 25;
@@ -30,7 +28,12 @@ trait Pagination
     public function getRecords()
     {
         $model = $this->model;
-        $query = $model::query();
+        
+        if (property_exists($this, 'show_deleted') && $this->show_deleted) {
+            $query = $model::query()->onlyTrashed();
+        } else {
+            $query = $model::query();
+        }
         
         foreach ($this->filters as $key => $value) {
             $query->where($key, 'LIKE', '%' . $value . '%');
